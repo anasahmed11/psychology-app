@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class HomeController extends Controller
 {
@@ -21,8 +22,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    use AuthenticatesUsers;
     public function index()
     {
-        return view('home');
+        $user = Auth::user();
+        if($user->type=='p'){
+            return redirect('/finddoctor');
+        }elseif($user->type=='d'){
+            return redirect('/') ;
+        }elseif($user->type=='a'){
+            return redirect('/admin') ;
+        }
     }
 }

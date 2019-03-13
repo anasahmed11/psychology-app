@@ -152,7 +152,7 @@
     <div class="our-app-link">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 offset-md-3 text-center">
+                <div class="col-md-6 offset-md-3 text-center wow fadeInUp"data-wow-duration="2s" data-wow-offset="300">
                     <div class="links-form">
                         <h2>Our Links</h2><br><br>
                         <a href="#"><button class="btn btn-block btn-links btn-face"><i class="fab fa-facebook-f"></i> Facebook Page</button></a><br><br>

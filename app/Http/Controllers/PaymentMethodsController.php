@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\PaymentMethod;
 use Illuminate\Http\Request;
-
 class PaymentMethodsController extends Controller
 {
     /**
@@ -13,7 +13,8 @@ class PaymentMethodsController extends Controller
      */
     public function index()
     {
-        //
+        $methods=PaymentMethod::all();
+        return view('admin_dash/payment_method')->with('methods',$methods);
     }
 
     /**
@@ -34,7 +35,16 @@ class PaymentMethodsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'method' => 'required',
+
+        ]);
+
+        $method = new PaymentMethod();
+        $method->method = $request->input('method');
+        $method->save();
+
+        return redirect('payment_method');
     }
 
     /**
@@ -68,7 +78,20 @@ class PaymentMethodsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'method' => 'required',
+
+        ]);
+
+        $method=PaymentMethod::find($id);
+        $method->method = $request->input('method');
+        $method->save();
+        if($method->save())    {
+            return redirect('payment_method')->with('success','updated successfully');
+        }
+        else{
+            return redirect('payment_method')->with('fail','error in update try again');
+        }
     }
 
     /**
@@ -79,6 +102,8 @@ class PaymentMethodsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $method = PaymentMethod::find($id);
+        $method->delete();
+        return redirect('payment_method')->with('success','delete successfully');
     }
 }

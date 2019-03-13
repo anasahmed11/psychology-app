@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Admin</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ url('/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="{{ url('/css/animate.css') }}">
     <link href="{{ url('/css/simple-sidebar.css') }}" rel="stylesheet">
@@ -27,13 +29,14 @@
         <div class="overlay"></div>
         <div class="sidebar-heading">Admin </div>
         <div class="list-group list-group-flush">
-            <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fas fa-search-location"></i> Blogs page</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fas fa-map-marked-alt"></i> Doctors</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light"><i class="far fa-clock"></i> visit_methods</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fas fa-history"></i> payment_methods</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fas fa-history"></i> locations</a>
+            <a href="{{ url('/admin') }}" class="list-group-item list-group-item-action bg-light"><i class="fas fa-user-md"></i>Doctors</a>
+            <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fas fa-address-card"></i> Doctor-requests</a>
+            <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fas fa-clipboard"></i> Blogs page</a>
+            <a href="{{ url('/visit_method') }}" class="list-group-item list-group-item-action bg-light"><i class="fas fa-map-marked-alt"></i> visit_methods</a>
+            <a href="{{ url('/payment_method') }}" class="list-group-item list-group-item-action bg-light"><i class="fas fa-credit-card"></i>payment_methods</a>
+            <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fas fa-search-location"></i> locations</a>
             <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fas fa-history"></i> categories</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fas fa-history"></i> payment_methods</a>
+            <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fas fa-retweet"></i> payment_methods</a>
         </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -51,7 +54,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ url('/') }}">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <!-- Authentication Links -->
                     @guest
@@ -65,7 +68,7 @@
                         @endif
                     @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ url('/') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
@@ -105,8 +108,7 @@
 <!-- end-color-setting -->
 
 <!-- Bootstrap core JavaScript -->
-<script src="{{ url('/vendor/jquery/jquery.min.js') }}"></script>
-<script src="{{ url('/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url('/js/jquery/jquery-2.2.4.min.js') }}"></script>
 <!--    wow.js file-->
 <script src="{{ url('/js/wow.min.js') }}"></script>
 <script>

@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="logo">
-                        <img src="{{ url('/images/logo.png') }}">
+                        <img src="{{ url('/images/4.png') }}">
                     </div>
                 </div>
                 <div class="col-md-9">

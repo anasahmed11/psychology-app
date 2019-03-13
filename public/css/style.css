@@ -43,8 +43,8 @@ header{
     color:white;
 }
 .logo img{
-    padding-top: 2px;
     padding-left: 20px;
+    height: 40px;
 }
 /* --nav */
 .bg-light{

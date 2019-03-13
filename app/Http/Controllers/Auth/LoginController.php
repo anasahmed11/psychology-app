@@ -18,8 +18,8 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
     use AuthenticatesUsers;
+
 
     public function authenticated($request , $user){
         if($user->type=='p'){
@@ -27,7 +27,7 @@ class LoginController extends Controller
         }elseif($user->type=='d'){
             return redirect('/') ;
         }elseif($user->type=='a'){
-            return redirect('/home') ;
+            return redirect('/admin') ;
         }
     }
     /**

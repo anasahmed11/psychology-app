@@ -41,4 +41,7 @@ $("#purple").click(function(){
     $("#menu-toggle").addClass("purple");
     $("#menu-toggle").removeClass("black red azure green");
 })
+$("#edit").click(function(){
+   $("#type-edit").val($(this).data('title'));
 
+})

@@ -6,11 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>patient</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ url('/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="{{ url('/css/animate.css') }}">
@@ -104,7 +107,6 @@
 
     <!-- Bootstrap core JavaScript -->
     <script src="{{ url('/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ url('/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!--    wow.js file-->
     <script src="{{ url('/js/wow.min.js') }}"></script>
     <script>

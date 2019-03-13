@@ -3,7 +3,7 @@ button:focus {
     outline: 5px auto rgba(0, 0, 0, .2);
 }
 #sidebar-wrapper{
-    background-image: url('../images/sidebar-5.jpg');
+    background-image: url('../images/sidebar-1.jpg');
         background-size: cover;
     background-position: center center;
     position: relative;
@@ -25,7 +25,7 @@ button:focus {
     margin-right: 15px;
 }
 .list-group-item{
-    margin-top: 20px;
+    margin-top: 15px;
 } 
 .bg-light {
     background-color: inherit !important;
@@ -59,7 +59,7 @@ a.bg-light:focus, a.bg-light:hover, button.bg-light:focus, button.bg-light:hover
 }
 #red{
     background: #FB404B;
-    top: 450px;
+    top: 550px;
     visibility:hidden;
 }
 .red,.red:hover{
@@ -71,17 +71,17 @@ a.bg-light:focus, a.bg-light:hover, button.bg-light:focus, button.bg-light:hover
     box-shadow: 0 0 0 0.2rem #FB404B;
 }
 #purple{
-    background: #9368E9;
-    top: 550px;
+    background: #EC5578;
+    top: 500px;
     visibility:hidden;
 }
 .purple,.purple:hover{
-    background: #9368E9;
+    background: #EC5578;
     color: white;
-    border-color: #9368E9;
+    border-color: #EC5578;
 }
 .purple:focus {
-    box-shadow: 0 0 0 0.2rem #9368E9;
+    box-shadow: 0 0 0 0.2rem #EC5578;
 }
 #black{
     top: 350px;
@@ -111,7 +111,7 @@ a.bg-light:focus, a.bg-light:hover, button.bg-light:focus, button.bg-light:hover
 }
 #blue{
    background: #1DC7EA;
-    top: 500px;
+    top: 450px;
     visibility:hidden;
 }
 .azure,.azure:hover{
@@ -127,12 +127,12 @@ a.bg-light:focus, a.bg-light:hover, button.bg-light:focus, button.bg-light:hover
     width: 100%;
     height: 100%;
     background: rgb(55,187,166);
-    background: -moz-linear-gradient(top, rgb(55,187,166) 0%, rgb(50,180,160) 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(55,187,166)), color-stop(100%, rgb(50,180,160)));
-    background: -webkit-linear-gradient(top, rgb(55,187,166) 0%, rgb(50,180,160) 100%);
-    background: -o-linear-gradient(top, rgb(55,187,166) 0%, rgb(50,180,160) 100%);
-    background: -ms-linear-gradient(top, rgb(55,187,166) 0%, rgb(50,180,160) 100%);
-    background: linear-gradient(top, rgb(55,187,166) 0%, rgb(50,180,160) 100%);
+    background: -moz-linear-gradient(top, rgb(55,187,166) 0%, rgb(109,170,149)100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(55,187,166)), color-stop(100%, rgb(109,170,149)));
+    background: -webkit-linear-gradient(top, rgb(55,187,166) 0%, rgb(109,170,149) 100%);
+    background: -o-linear-gradient(top, rgb(55,187,166) 0%, rgb(109,170,149) 100%);
+    background: -ms-linear-gradient(top, rgb(55,187,166) 0%, rgb(109,170,149)100%);
+    background: linear-gradient(top, rgb(55,187,166) 0%, rgb(109,170,149) 100%);
     background-size: 150% 150%;
     z-index: -1;
     opacity: 0.8;
@@ -141,13 +141,13 @@ a.bg-light:focus, a.bg-light:hover, button.bg-light:focus, button.bg-light:hover
     
 }
 .o-purple{
-         background: rgb(200,149,85);
-    background: -moz-linear-gradient(top, rgb(205,153,90) 0%, rgb(200,149,85) 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(205,153,90)), color-stop(100%, rgb(200,149,85)));
-    background: -webkit-linear-gradient(top, rgb(205,153,90) 0%, rgb(200,149,85) 100%);
-    background: -o-linear-gradient(top, rgb(205,153,90) 0%, rgb(200,149,85) 100%);
-    background: -ms-linear-gradient(top, rgb(205,153,90) 0%, rgb(200,149,85) 100%);
-    background: linear-gradient(top, rgb(205,153,90) 0%, rgb(200,149,85) 100%);
+         background: #EC5578;
+    background: -moz-linear-gradient(top, #FB607F 0%, #EC5578 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FB607F), color-stop(100%, #EC5578));
+    background: -webkit-linear-gradient(top, #FB607F 0%, #EC5578 100%);
+    background: -o-linear-gradient(top, #FB607F 0%, #EC5578 100%);
+    background: -ms-linear-gradient(top, #FB607F 0%, #EC5578 100%);
+    background: linear-gradient(top, #FB607F 0%, #EC5578 100%);
     opacity: 0.8;
 }
 .o-red{
