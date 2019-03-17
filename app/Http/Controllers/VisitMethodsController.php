@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\VisitMethod;
+use Response;
+use Validator;
 class VisitMethodsController extends Controller
 {
     /**
@@ -15,10 +18,14 @@ class VisitMethodsController extends Controller
         [
             'type' => 'required|',
         ];
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $methods=VisitMethod::all();
-        return view('admin_dash/visit_method')->with('methods',$methods);
+        return view('admin_dash/visit-method')->with('methods',$methods);
     }
 
     /**
@@ -39,16 +46,15 @@ class VisitMethodsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'type' => 'required',
-
-        ]);
-
-        $method = new VisitMethod();
-        $method->type = $request->input('type');
-        $method->save();
-
-        return redirect('visit_method');
+        $validator = Validator::make(Input::all(), $this->rules);
+        if ($validator->fails()) {
+            return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
+        } else {
+            $method = new VisitMethod();
+            $method->type = $request->input('type');
+            $method->save();
+            return response()->json($method);
+        }
     }
 
 
@@ -106,6 +112,6 @@ class VisitMethodsController extends Controller
     {
         $method = VisitMethod::find($id);
         $method->delete();
-        return redirect('visit_method')->with('success','delete successfully');
+        return response()->json($method);
     }
 }

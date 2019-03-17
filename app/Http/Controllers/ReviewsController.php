@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ClientReview;
+use Illuminate\Support\Facades\Input;
+use Response;
+use Validator;
 class ReviewsController extends Controller
 {
     /**
@@ -11,9 +14,21 @@ class ReviewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $rules =
+        [
+            'name' => 'required',
+            'email' => 'required|email|unique:client_reviews,email',
+            'review' => 'required',
+        ];
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['store']]);
+    }
     public function index()
     {
         //
+        $client_r=ClientReview::all();
+        return view('admin_dash/client-review')->with('client_r',$client_r);
     }
 
     /**
@@ -34,21 +49,18 @@ class ReviewsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'name' => 'required',
-            'email' => 'required|email|unique:client_reviews,email',
-            'review' => 'required',
-
-
-        ]);
-        $review = new ClientReview();
-        $review->name = $request->input('name');
-        $review->email = $request->input('email');
-        $review->review = $request->input('review');
-        $review->save();
-        if($review->save()){
-            return redirect('contact-us')->with('success','Thank You,we will read your review and solve your problems');
+        $validator = Validator::make(Input::all(), $this->rules);
+        if ($validator->fails()) {
+            return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
+        }else{
+            $review = new ClientReview();
+            $review->name = $request->input('name');
+            $review->email = $request->input('email');
+            $review->review = $request->input('review');
+            $review->save();
+            return response()->json($review);
         }
+
     }
 
     /**

@@ -30,13 +30,13 @@
         <div class="sidebar-heading">Admin </div>
         <div class="list-group list-group-flush">
             <a href="{{ url('/admin') }}" class="list-group-item list-group-item-action bg-light"><i class="fas fa-user-md"></i>Doctors</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fas fa-address-card"></i> Doctor-requests</a>
+            <a href="{{ url('/doctor-request') }}" class="list-group-item list-group-item-action bg-light"><i class="fas fa-address-card"></i> Doctor-requests</a>
             <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fas fa-clipboard"></i> Blogs page</a>
-            <a href="{{ url('/visit_method') }}" class="list-group-item list-group-item-action bg-light"><i class="fas fa-map-marked-alt"></i> visit_methods</a>
-            <a href="{{ url('/payment_method') }}" class="list-group-item list-group-item-action bg-light"><i class="fas fa-credit-card"></i>payment_methods</a>
+            <a href="{{ url('/visit-method') }}" class="list-group-item list-group-item-action bg-light"><i class="fas fa-map-marked-alt"></i> visit_methods</a>
+            <a href="{{ url('/payment-method') }}" class="list-group-item list-group-item-action bg-light"><i class="fas fa-credit-card"></i>payment_methods</a>
             <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fas fa-search-location"></i> locations</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fas fa-history"></i> categories</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fas fa-retweet"></i> payment_methods</a>
+            <a href="{{ url('/categories') }}" class="list-group-item list-group-item-action bg-light"><i class="fas fa-history"></i> categories</a>
+            <a href="{{ url('/client-review') }}" class="list-group-item list-group-item-action bg-light"><i class="fas fa-retweet"></i> client-reviews</a>
         </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -108,7 +108,7 @@
 <!-- end-color-setting -->
 
 <!-- Bootstrap core JavaScript -->
-<script src="{{ url('/js/jquery/jquery-2.2.4.min.js') }}"></script>
+<script src="{{ url('/js/jquery/jquery-3.3.1.js') }}"></script>
 <!--    wow.js file-->
 <script src="{{ url('/js/wow.min.js') }}"></script>
 <script>

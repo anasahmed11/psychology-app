@@ -1,9 +1,8 @@
 @extends('layouts.admin_dash')
 @section('content')
-    @include('inc.messages')
     <div class="row">
     <div class="col-md-12 c_text login_page col-md-4 wow fadeInRight"data-wow-duration="2s" data-wow-offset="300">
-        <table class="table table-responsive table-striped">
+        <table class="method-table table table-responsive table-striped ">
             <thead>
             <tr>
                 <th>id</th>
@@ -16,14 +15,11 @@
 
             @foreach($methods as $method)
 
-                <tr>
+                <tr class="method-{{$method->id}}">
                     <td>{{ $method->id }} </td>
                     <td>{{ $method->type }}</td>
-                    <td><button class="btn btn-success" id="edit" data-toggle="modal" data-target="#edit-modal-method" data-id="{{ $method->id }}" data-title="{{$method->type}}" >update</button></td>
-                    <td>{{Form::open(['action' => ['VisitMethodsController@destroy',$method->id]])}}
-                        {{method_field('DELETE')}}
-                        {{Form::submit('Delete',['class' => 'btn btn-danger '])}}
-                        {{ Form::close() }}</td>
+                    <td><button class="edit-method btn btn-success"  data-toggle="modal" data-target="#edit-modal-method" data-id="{{ $method->id }}" data-title="{{ $method->type }}" >update</button></td>
+                    <td><button class="delete-method btn btn-danger" data-id="{{ $method->id }}">delete</button></td>
                 </tr>
 
             @endforeach
@@ -37,7 +33,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter-new">Add new</button>
+            <button class="btn btn-primary"  data-toggle="modal" data-target="#exampleModalCenter-new">Add new</button>
         </div>
     </div>
     <!-- Modal -->
@@ -45,18 +41,21 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">update item</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">new method</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">x</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{Form::open(['action' => ['VisitMethodsController@store']])}}
+                    {{Form::open(array('id'=>'add-method-form'))}}
                     {{Form::label('type', 'type')}}
-                    {{Form::text('type','',['class' => 'form-control'])}}<br>
-                    {{Form::submit('save changes',['class' => 'btn btn-primary btn-lg btn-block'])}}
-
+                    {{Form::text('type','',['class' => 'form-control', 'id'=>'new-type'])}}<br>
+                    {{Form::submit('save changes',['class' => 'btn btn-primary btn-lg btn-block','id'=>'new-method'])}}
                     {{ Form::close() }}
+                    <br>
+                    <div class="met alert alert-success">
+
+                    </div>
 
                 </div>
                 <div class="modal-footer">
@@ -77,13 +76,16 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{Form::open()}}
+                    {{Form::open(array('id'=>'edit-method-form'))}}
                     {{method_field('PUT')}}
                     {{Form::label('type', 'type')}}
                     {{Form::text('type', '' ,['class' => 'form-control','id' => 'type-edit'])}}<br>
-                    {{Form::submit('save changes',['class' => 'btn btn-primary btn-lg btn-block'])}}
+                    {{Form::submit('save changes',['class' => 'btn btn-primary btn-lg btn-block','id'=>'edit-method'])}}
                     {{ Form::close() }}
+                    <br>
+                    <div class="met alert alert-success">
 
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

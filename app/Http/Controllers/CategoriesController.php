@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Categorie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Response;
+use Validator;
 
 class CategoriesController extends Controller
 {
@@ -11,9 +14,19 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $rules =
+        [
+            'name' => 'required|',
+        ];
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         //
+        $categories=Categorie::all();
+        return view('admin_dash/categories')->with('categories',$categories);
     }
 
     /**
@@ -34,7 +47,15 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make(Input::all(), $this->rules);
+        if ($validator->fails()) {
+            return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
+        } else {
+            $category = new Categorie();
+            $category->name = $request->input('name');
+            $category->save();
+            return response()->json($category);
+        }
     }
 
     /**
@@ -68,7 +89,15 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make(Input::all(), $this->rules);
+        if ($validator->fails()) {
+            return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
+        }else{
+            $category = Categorie::find($id);
+            $category->name = $request->input('name');
+            $category->save();
+            return response()->json($category);
+        }
     }
 
     /**
@@ -79,6 +108,8 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Categorie::find($id);
+        $category->delete();
+        return response()->json($category);
     }
 }

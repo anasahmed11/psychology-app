@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!--    first mobile meta-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>app</title>
+    <title>THERAPO</title>
     <!--    bootstrap-->
     <link rel="stylesheet" href="{{ url('/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url('/css/animate.css') }}">
@@ -77,7 +77,6 @@
 <!-- scripts -->
 <script src="{{ url('/js/html5shiv.min.js') }}"></script>
 <script src="{{ url('/js/jquery/jquery-2.2.4.min.js') }}"></script>
-<script src="{{ url('/js/bootstrap.js') }}"></script>
 <script src="{{ url('/js/bootstrap.min.js') }}"></script>
 <!--    wow.js file-->
 <script src="{{ url('/js/wow.min.js') }}"></script>
@@ -86,5 +85,6 @@
 
 </script>
 <script src="{{ url('/js/my-app.js') }}"></script>
+<script src="{{ url('/js/mainpages.js') }}"></script>
 </body>
 </html>

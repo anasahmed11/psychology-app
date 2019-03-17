@@ -34,13 +34,16 @@
                 <div class="col-md-6 offset-md-3 wow fadeInDown" data-wow-duration="2s" data-wow-offset="300">
                     <div class="form-login">
                         <h2 class="text-center">Send Review</h2>
-                        {{Form::open(['action' => 'ReviewsController@store'])}}
+                        {{Form::open(array('id'=>'new-clientrev-form'))}}
                         {{Form::text('name','',['class' => 'form-control','placeholder'=>'Enter Name'])}}<br>
                         {{Form::email('email','',['class' => 'form-control','placeholder'=>'E-mail Address'])}}<br>
                         {{Form::textarea('review','',['class' => 'form-control','rows' =>3,'cols'=>10,'placeholder'=>'Write Your Review'])}}<br><br>
-                        {{Form::submit('Send Review',['class' => 'btn btn-review btn-lg '])}}<br>
+                        {{Form::submit('Send Review',['class' => 'btn btn-review btn-lg','id'=>'new-client-rev'])}}<br>
                         {{Form::close()}}
-                        @include('inc.messages')
+                        <br>
+                        <div class="dreq alert alert-success">
+
+                        </div>
                     </div>
                 </div>
             </div>

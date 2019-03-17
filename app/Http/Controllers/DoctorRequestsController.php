@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\DoctorRequest;
+use Illuminate\Support\Facades\Input;
+use Response;
+use Validator;
 class DoctorRequestsController extends Controller
 {
     /**
@@ -11,9 +14,24 @@ class DoctorRequestsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $rules =
+        [
+            'name' => 'required',
+            'email' => 'required|email|unique:doctor_requests,email',
+            'phone' => 'required',
+            'certificates' => 'required',
+            'age' => 'required|numeric',
+            'experience' => 'required|numeric',
+        ];
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['store']]);
+    }
     public function index()
     {
         //
+        $doctor_r=DoctorRequest::all();
+        return view('admin_dash/doctor-request')->with('doctor_r',$doctor_r);
     }
 
     /**
@@ -34,29 +52,20 @@ class DoctorRequestsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'name' => 'required',
-            'email' => 'required|email|unique:doctor_requests,email',
-            'phone' => 'required',
-            'certificates' => 'required',
-            'age' => 'required|numeric',
-            'experience' => 'required|numeric',
-
-        ]);
-        $doctor = new DoctorRequest();
-        $doctor->name = $request->input('name');
-        $doctor->email = $request->input('email');
-        $doctor->phone = $request->input('phone');
-        $doctor->certificates = $request->input('certificates');
-        $doctor->age = $request->input('age');
-        $doctor->experience = $request->input('experience');
-        $doctor->save();
-        if($doctor->save()){
-            return redirect('newdoctor')->with('success','send successfully, we will send email or call you');
+        $validator = Validator::make(Input::all(), $this->rules);
+        if ($validator->fails()) {
+            return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
+        }else{
+            $doctor = new DoctorRequest();
+            $doctor->name = $request->input('name');
+            $doctor->email = $request->input('email');
+            $doctor->phone = $request->input('phone');
+            $doctor->certificates = $request->input('certificates');
+            $doctor->age = $request->input('age');
+            $doctor->experience = $request->input('experience');
+            $doctor->save();
+            return response()->json($doctor);
         }
-
-
-
     }
 
     /**
@@ -101,6 +110,8 @@ class DoctorRequestsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $doctor_r = DoctorRequest::find($id);
+        $doctor_r->delete();
+        return response()->json($doctor_r);
     }
 }

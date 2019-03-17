@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\PaymentMethod;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Response;
+use Validator;
 class PaymentMethodsController extends Controller
 {
     /**
@@ -11,10 +14,18 @@ class PaymentMethodsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $rules =
+        [
+            'method' => 'required|',
+        ];
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $methods=PaymentMethod::all();
-        return view('admin_dash/payment_method')->with('methods',$methods);
+        return view('admin_dash/payment-method')->with('methods',$methods);
     }
 
     /**
@@ -35,16 +46,15 @@ class PaymentMethodsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'method' => 'required',
-
-        ]);
-
-        $method = new PaymentMethod();
-        $method->method = $request->input('method');
-        $method->save();
-
-        return redirect('payment_method');
+        $validator = Validator::make(Input::all(), $this->rules);
+        if ($validator->fails()) {
+            return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
+        } else {
+            $method = new PaymentMethod();
+            $method->method = $request->input('method');
+            $method->save();
+            return response()->json($method);
+        }
     }
 
     /**
@@ -78,19 +88,14 @@ class PaymentMethodsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'method' => 'required',
-
-        ]);
-
-        $method=PaymentMethod::find($id);
-        $method->method = $request->input('method');
-        $method->save();
-        if($method->save())    {
-            return redirect('payment_method')->with('success','updated successfully');
-        }
-        else{
-            return redirect('payment_method')->with('fail','error in update try again');
+        $validator = Validator::make(Input::all(), $this->rules);
+        if ($validator->fails()) {
+            return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
+        } else {
+            $method = PaymentMethod::find($id);
+            $method->method = $request->input('method');
+            $method->save();
+            return response()->json($method);
         }
     }
 
@@ -104,6 +109,6 @@ class PaymentMethodsController extends Controller
     {
         $method = PaymentMethod::find($id);
         $method->delete();
-        return redirect('payment_method')->with('success','delete successfully');
+        return response()->json($method);
     }
 }

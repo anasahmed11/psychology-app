@@ -514,6 +514,10 @@ input:-webkit-autofill:active {
     background-color:rgb(200,149,85) ;
     color: white;
 }
+.form-login input[type="submit"]:active,.form-login input[type="submit"]:focus{
+    background-color:rgb(200,149,85) ;
+    color: white;
+}
     /*  endnewdoctor */
 footer{
     background-color: rgb(55,187,166);

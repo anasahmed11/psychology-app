@@ -40,17 +40,37 @@ Route::get('/finddoctor','ViewsController@patient_index')->middleware('auth');
 Route::resource('views','ViewsController');
 /* end find doctor controllers */
 
-Route::get('/visit_method','VisitMethodsController@index');
-Route::resource('visit_method','VisitMethodsController');
-Route::put('/visit_method/{id}','VisitMethodsController@update');
-Route::get('/visit_method/{id}','VisitMethodsController@edit');
-Route::delete('/visit_method/{id}','VisitMethodsController@destroy');
-Route::post('/visit_method','VisitMethodsController@store');
+Route::get('/visit-method','VisitMethodsController@index')->middleware('auth');
+Route::resource('visit-method','VisitMethodsController');
+Route::put('/visit-method/{id}','VisitMethodsController@update');
+Route::get('/visit-method/{id}','VisitMethodsController@edit');
+Route::delete('/visit-method/{id}','VisitMethodsController@destroy');
+Route::post('/visit-method','VisitMethodsController@store');
 
-/* visit method */
+/* pay method */
 
-Route::get('/payment_method','PaymentMethodsController@index');
-Route::resource('payment_method','PaymentMethodsController');
-Route::put('/payment_method/{id}','PaymentMethodsController@update');
-Route::delete('/payment_method/{id}','PaymentMethodsController@destroy');
-Route::post('/payment_method','PaymentMethodsController@store');
+Route::get('/payment-method','PaymentMethodsController@index')->middleware('auth');
+Route::resource('payment-method','PaymentMethodsController');
+Route::put('/payment-method/{id}','PaymentMethodsController@update');
+Route::delete('/payment-method/{id}','PaymentMethodsController@destroy');
+Route::post('/payment-method','PaymentMethodsController@store');
+
+
+/* doctor request */
+
+Route::get('/doctor-request','DoctorRequestsController@index')->middleware('auth');
+Route::delete('/doctor-request/{id}','DoctorRequestsController@destroy');
+
+
+/* doctor request */
+Route::get('/client-review','ReviewsController@index')->middleware('auth');
+
+
+/* categories */
+
+Route::get('/categories','CategoriesController@index')->middleware('auth');
+Route::resource('categories','CategoriesController');
+Route::put('/categories/{id}','CategoriesController@update');
+Route::delete('/categories/{id}','CategoriesController@destroy');
+Route::post('/categories','CategoriesController@store');
+

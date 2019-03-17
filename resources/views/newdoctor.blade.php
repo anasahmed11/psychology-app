@@ -38,16 +38,19 @@
                 <div class="col-md-6 offset-md-3  wow fadeInUp"data-wow-duration="2s" data-wow-offset="300">
                     <div class="form-login">
                         <h2 class="text-center">Join-us</h2>
-                        {{Form::open(['action' => 'DoctorRequestsController@store'])}}
+                        {{Form::open(array('id'=>'new-doctorreq-form'))}}
                         {{Form::text('name','',['class' => 'form-control','placeholder'=>'Your Name'])}}<br>
                         {{Form::email('email','',['class' => 'form-control','placeholder'=>'Email'])}}<br>
                         {{Form::text('phone','',['class' => 'form-control','placeholder'=>'Phone'])}}<br>
                         {{Form::text('certificates','',['class' => 'form-control','placeholder'=>'certificates'])}}<br>
                         {{Form::number('age','',['class' => 'form-control','placeholder'=>'age'])}}<br>
                         {{Form::number('experience','',['class' => 'form-control','placeholder'=>'Years Of Experience'])}}<br><br>
-                        {{Form::submit('Send Data',['class' => 'btn btn-review btn-lg '])}}<br>
+                        {{Form::submit('Send Data',['class' => 'btn btn-lg btn-review','id'=>'new-doctor-req'])}}<br>
                         {{Form::close()}}
-                        @include('inc.messages')
+                        <br>
+                        <div class="dreq alert alert-success">
+
+                        </div>
                     </div>
                 </div>
             </div>
